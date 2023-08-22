@@ -2,29 +2,35 @@
 {% load custom_filters %}
 {% load custom_tags %}
 {% block title %}
-Posts
+Comments
 {% endblock title %}
 
 {% block content %}
-   <h1>Все объявления</h1>
-   <h3> {{ new_post|default_if_none:"Мы сообщим о новых объявлениях!" }} </h3>
+   <h1>Все отклики!</h1>
+   <form action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+       {{ filterset.form.as_p }}
+       {# Добавим кнопку отправки данных формы #}
+       <input type="submit" value="Найти" />
+   </form>
    <hr>
-   {% if posts %}
+   {% if coms %}
        <table>
            <tr>
                <td>Автор</td>
-               <td>Заголовок</td>
+               <td>Пост</td>
                <td>Дата публикации</td>
-               <td>Категория</td>
                <td>Текст</td>
            </tr>
-           {% for post in posts %}
+           {% for com in coms %}
            <tr>
-               <td>{{ post.user.username }}</td>
-               <td>{{ post.head_name }}</td>
-               <td>{{ post.time_in|date:'d M Y' }}</td>
-               <td>{{ post.category }}
-               <td>{{ post.article_text|truncatechars:20}}</td>
+               <td>{{ com.user.username }}</td>
+               <!---<td>{{ com.post }} </td>----->
+               <td>{% for post in com.post.all %}
+                   <a href="{% url 'post' post.id %}">{{com.post}}</a>
+               {% endfor %}</td>
+               <td>{{ com.time_in|date:'d M Y' }}</td>
+               <td>{{ com.comment_text|truncatechars:20}}</td>
            </tr>
            {% endfor %}
 

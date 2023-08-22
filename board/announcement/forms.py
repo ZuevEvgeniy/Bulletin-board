@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 from django.core.exceptions import ValidationError
 
 class PostForm(forms.ModelForm):
@@ -23,5 +23,23 @@ class PostForm(forms.ModelForm):
            raise ValidationError(
                "Название не должно быть идентично посту."
            )
+
+       return cleaned_data
+
+class ComForm(forms.ModelForm):
+   class Meta:
+       model = Comment
+       fields = [
+            'user',
+            'post',
+            'comment_text',
+        ]
+   def clean(self):
+       cleaned_data = super().clean()
+       comment_text = cleaned_data.get("comment_text")
+       if comment_text is not None and len(comment_text) < 20:
+           raise ValidationError({
+               "comment_text": "Публикация не может быть менее 20 символов."
+           })
 
        return cleaned_data
