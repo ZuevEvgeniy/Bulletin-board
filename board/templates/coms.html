@@ -25,10 +25,7 @@ Comments
            {% for com in coms %}
            <tr>
                <td>{{ com.user.username }}</td>
-               <!---<td>{{ com.post }} </td>----->
-               <td>{% for post in com.post.all %}
-                   <a href="{% url 'post' post.id %}">{{com.post}}</a>
-               {% endfor %}</td>
+               <td>{{ com.post }} </td>
                <td>{{ com.time_in|date:'d M Y' }}</td>
                <td>{{ com.comment_text|truncatechars:20}}</td>
            </tr>

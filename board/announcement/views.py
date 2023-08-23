@@ -10,6 +10,7 @@ from .filters import ComsFilter
 from .forms import PostForm, ComForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from urllib import request
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -41,12 +42,28 @@ class PostCreate(PermissionRequiredMixin,CreateView):
         post.save()
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        """Необходимо учитывать, что текущий пользователь у нас может быть не залогинен."""
+        kwargs = super().get_form_kwargs()
+        kwargs.update({
+            'user_info': self.request.user if self.request.user.is_authenticated else None,
+        })
+        return kwargs
+
 @method_decorator(login_required, name='dispatch')
 class PostUpdate(PermissionRequiredMixin,UpdateView):
     permission_required = ('posts.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
+
+    def get_form_kwargs(self):
+        """Необходимо учитывать, что текущий пользователь у нас может быть не залогинен."""
+        kwargs = super().get_form_kwargs()
+        kwargs.update({
+            'user_info': self.request.user if self.request.user.is_authenticated else None,
+        })
+        return kwargs
 
 @method_decorator(login_required, name='dispatch')
 class PostDelete(PermissionRequiredMixin,DeleteView):
@@ -61,6 +78,14 @@ class ComCreate(PermissionRequiredMixin,CreateView):
     form_class = ComForm
     model = Post
     template_name = 'com_edit.html'
+
+    def get_form_kwargs(self):
+        """Необходимо учитывать, что текущий пользователь у нас может быть не залогинен."""
+        kwargs = super().get_form_kwargs()
+        kwargs.update({
+            'user_info': self.request.user if self.request.user.is_authenticated else None,
+        })
+        return kwargs
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -79,6 +104,14 @@ class ComUpdate(PermissionRequiredMixin,UpdateView):
     form_class = ComForm
     model = Comment
     template_name = 'com_edit.html'
+
+    def get_form_kwargs(self):
+        """Необходимо учитывать, что текущий пользователь у нас может быть не залогинен."""
+        kwargs = super().get_form_kwargs()
+        kwargs.update({
+            'user_info': self.request.user if self.request.user.is_authenticated else None,
+        })
+        return kwargs
 
 @method_decorator(login_required, name='dispatch')
 class ComDelete(PermissionRequiredMixin,DeleteView):

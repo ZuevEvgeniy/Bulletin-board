@@ -6,13 +6,19 @@ class PostForm(forms.ModelForm):
    class Meta:
        model = Post
        fields = [
-            'author',
+            #'author',
             'category',
             'head_name',
             'article_text',
         ]
+
+   def __init__(self, user_info, *args, **kwargs):
+       self.user_info = user_info
+       super().__init__(*args, **kwargs)
+
    def clean(self):
        cleaned_data = super().clean()
+       cleaned_data['author'] = self.user_info
        article_text = cleaned_data.get("article_text")
        if article_text is not None and len(article_text) < 20:
            raise ValidationError({
@@ -30,12 +36,17 @@ class ComForm(forms.ModelForm):
    class Meta:
        model = Comment
        fields = [
-            'user',
+            #'user',
             'post',
             'comment_text',
         ]
+   def __init__(self, user_info, *args, **kwargs):
+       self.user_info = user_info
+       super().__init__(*args, **kwargs)
+
    def clean(self):
        cleaned_data = super().clean()
+       cleaned_data['user'] = self.user_info
        comment_text = cleaned_data.get("comment_text")
        if comment_text is not None and len(comment_text) < 20:
            raise ValidationError({

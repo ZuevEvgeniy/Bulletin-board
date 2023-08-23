@@ -40,7 +40,7 @@ CATEGORY = [
 class Post(models.Model):
 
     objects = None
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default= "1")
     time_in = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=20,choices=CATEGORY, default=tanks)
     head_name = models.CharField(max_length=250, unique=True)
@@ -61,7 +61,7 @@ class Comment(models.Model):
 
     objects = None
     post = models.ForeignKey(Post, on_delete=models.CASCADE,default='1')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default= "1")
     comment_text = models.TextField()
     time_in = models.DateTimeField(auto_now_add=True)
 

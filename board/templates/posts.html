@@ -20,7 +20,7 @@ Posts
            </tr>
            {% for post in posts %}
            <tr>
-               <td>{{ post.user.username }}</td>
+               <td>{{ post.author }}</td>
                <td>{{ post.head_name }}</td>
                <td>{{ post.time_in|date:'d M Y' }}</td>
                <td>{{ post.category }}
