@@ -151,7 +151,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = X
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # сообщения выводит в терминал
 
 LOGIN_URL = 'sign/login/'
 LOGIN_REDIRECT_URL = '/'
