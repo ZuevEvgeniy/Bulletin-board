@@ -10,6 +10,8 @@ class PostForm(forms.ModelForm):
             'category',
             'head_name',
             'article_text',
+            'file',
+            'image',
         ]
 
    def __init__(self, user_info, *args, **kwargs):

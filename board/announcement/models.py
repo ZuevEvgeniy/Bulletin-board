@@ -45,11 +45,11 @@ class Post(models.Model):
     category = models.CharField(max_length=20,choices=CATEGORY, default=tanks)
     head_name = models.CharField(max_length=250, unique=True)
     article_text = models.TextField()
-    #comment = models.ManyToManyField("Comment", through="PostComment")
+    image = models.ImageField(upload_to='images/', default=None)
+    file = models.FileField(upload_to='files/', default=None)
 
     def __str__(self):
         return self.head_name
-
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
@@ -61,7 +61,7 @@ class Post(models.Model):
 class Comment(models.Model):
 
     objects = None
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,default='1')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,default="1")
     user = models.ForeignKey(User, on_delete=models.CASCADE, default= "1")
     comment_text = models.TextField()
     time_in = models.DateTimeField(auto_now_add=True)
@@ -70,8 +70,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.post
-
-class PostComment(models.Model):
-
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)

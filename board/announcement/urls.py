@@ -14,4 +14,5 @@ urlpatterns = [
    path('com/<int:pk>/edit/', ComUpdate.as_view(), name='com_update'),
    path('com/<int:pk>/delete/', ComDelete.as_view(), name='com_delete'),
    path('coms/',ComsSearch.as_view(),name='coms_list'),
+   path('com/<int:pk>/agree/', ComAgree.as_view(), name='com_agree')
 ]

@@ -130,7 +130,7 @@ class ComDelete(PermissionRequiredMixin,DeleteView):
 
 class ComsSearch(ListView):
     model = Comment
-    ordering = '-time_in'
+    ordering = 'user'
     template_name = 'coms.html'
     context_object_name = 'coms'
     paginate_by = 10
@@ -145,3 +145,10 @@ class ComsSearch(ListView):
         context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
         return context
+
+class ComAgree(ListView):
+    model = Comment
+    ordering = 'user'
+    template_name = 'agree.html'
+    context_object_name = 'coms'
+    paginate_by = 10

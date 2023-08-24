@@ -9,7 +9,7 @@ Comment
 <h1>{{ com.user}}</h1>
 <h4>{{ com.comment_text }}</h4>
 
-<a href="page/new.html" class="btn">Принять</a>
+<a href="{% url 'com_agree' com.id %}">Принять</a>
 <a href="{% url 'com_delete' com.id %}">Отклонить</a>
 
 {% endblock content %}
