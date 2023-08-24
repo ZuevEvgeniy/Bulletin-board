@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Регистрацию добавил 1.0">
-      <change afterPath="$PROJECT_DIR$/board/templates/post_author.html" afterDir="false" />
+    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Регистрацию добавил 1.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/board/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/sign/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/sign/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/templates/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/templates/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/posts.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692798021464</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Регистрацию добавил 1.1">
+      <created>1692863763940</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692863763940</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -106,6 +105,7 @@
     <MESSAGE value="Work with comments" />
     <MESSAGE value="Регистрацию добавил" />
     <MESSAGE value="Регистрацию добавил 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Регистрацию добавил 1.0" />
+    <MESSAGE value="Регистрацию добавил 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Регистрацию добавил 1.1" />
   </component>
 </project>
