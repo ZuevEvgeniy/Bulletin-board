@@ -50,6 +50,7 @@ class Post(models.Model):
     def __str__(self):
         return self.head_name
 
+
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
@@ -64,7 +65,6 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default= "1")
     comment_text = models.TextField()
     time_in = models.DateTimeField(auto_now_add=True)
-
     def get_absolute_url(self):
         return reverse('com_detail', args=[str(self.id)])
 

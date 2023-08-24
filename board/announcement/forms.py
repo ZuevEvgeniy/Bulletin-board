@@ -48,9 +48,9 @@ class ComForm(forms.ModelForm):
        cleaned_data = super().clean()
        cleaned_data['user'] = self.user_info
        comment_text = cleaned_data.get("comment_text")
-       if comment_text is not None and len(comment_text) < 20:
+       if comment_text is not None and len(comment_text) < 5:
            raise ValidationError({
-               "comment_text": "Публикация не может быть менее 20 символов."
+               "comment_text": "Публикация не может быть менее 5 символов."
            })
 
        return cleaned_data
