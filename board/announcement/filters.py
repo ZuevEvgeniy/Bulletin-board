@@ -1,6 +1,5 @@
 import django_filters
 from django import forms
-
 from .models import Comment
 
 # Создаем свой набор фильтров для модели Post.
@@ -9,6 +8,7 @@ from .models import Comment
 class ComsFilter(django_filters.FilterSet):
    date=django_filters.DateFilter(field_name="time_in", widget=forms.DateInput(attrs={'type':"date"}),
                    label='Дата',lookup_expr='date__gte')
+
    class Meta:
        # В Meta классе мы должны указать Django модель,
        # в которой будем фильтровать записи.
