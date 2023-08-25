@@ -46,12 +46,13 @@ class Post(models.Model):
     category = models.CharField(max_length=20,choices=CATEGORY, default=tanks)
     head_name = models.CharField(max_length=250, unique=True)
     article_text = models.TextField()
-    image = models.ImageField(upload_to='images/',blank=False, null= True)
-    file = models.FileField(upload_to='files/',blank=False, null= True)
+    image = models.ImageField(upload_to='images/',blank=True, null= True)
+    file = models.FileField(upload_to='files/',blank=True, null= True)
 
     def __str__(self):
-        #return self.head_name
-        return f'{self.head_name}: {self.author.user} : {self.author.emai}'
+        authors_email = [i.email for i in self.author.all()]
+        authors_name = [i.username for i in self.author.all()]
+        return f'{self.head_name}: {authors_name} : {authors_email}'
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
