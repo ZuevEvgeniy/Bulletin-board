@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Files">
+    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Files 1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/migrations/0002_remove_post_comment_comment_post_alter_post_category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/migrations/0003_alter_post_author.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/migrations/0004_alter_comment_user_alter_post_author.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/announcement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/board/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/sign/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/sign/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692870796461</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Files 1.0">
+      <created>1692884315496</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692884315496</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -130,6 +131,7 @@
     <MESSAGE value="Регистрацию добавил 1.1" />
     <MESSAGE value="Коммит перед чисткой" />
     <MESSAGE value="Files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Files" />
+    <MESSAGE value="Files 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Files 1.0" />
   </component>
 </project>
