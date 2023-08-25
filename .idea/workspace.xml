@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Files 1.0">
+    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Files 2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/announcement/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/board/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/announcement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +42,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\I\Desktop\Доска объявлений\Bulletin-board\board\static\css" />
       <recent name="C:\Users\I\Desktop\Доска объявлений\Bulletin-board\board" />
       <recent name="C:\Users\I\Desktop\Доска объявлений\Bulletin-board\board\templates" />
       <recent name="C:\Users\I\Desktop\Доска объявлений\Bulletin-board\board\sign" />
@@ -119,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692884315496</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Files 2.0">
+      <created>1692954530588</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692954530588</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -132,6 +140,7 @@
     <MESSAGE value="Коммит перед чисткой" />
     <MESSAGE value="Files" />
     <MESSAGE value="Files 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Files 1.0" />
+    <MESSAGE value="Files 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Files 2.0" />
   </component>
 </project>

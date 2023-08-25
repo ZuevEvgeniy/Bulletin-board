@@ -16,6 +16,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 #from .tasks import hello, send_email_post, printer
 from django.core.cache import cache
+from django.core.mail import send_mail
 
 class PostsList(ListView):
     model = Post
@@ -88,8 +89,15 @@ class ComCreate(PermissionRequiredMixin,CreateView):
         return kwargs
 
     def form_valid(self, form):
-        post = form.save(commit=False)
-        post.save()
+        com = form.save(commit=False)
+        com.save()
+        send_mail(
+            subject=f'На Ваш пост{com.post} откликнулся{com.user}',
+            message=com.comment_text,
+            from_email='ForMyLittleTesting@yandex.ru',
+            recipient_list=[com.post.email]
+        )
+
         return super().form_valid(form)
 
 class ComDetail(DetailView):
