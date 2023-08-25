@@ -95,7 +95,7 @@ class ComCreate(PermissionRequiredMixin,CreateView):
             subject=f'На Ваш пост{com.post} откликнулся{com.user}',
             message=com.comment_text,
             from_email='ForMyLittleTesting@yandex.ru',
-            recipient_list=[com.post.email]
+            recipient_list=[com.post.author.user.email]
         )
 
         return super().form_valid(form)

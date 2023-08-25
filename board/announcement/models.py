@@ -40,8 +40,8 @@ CATEGORY = [
 class Post(models.Model):
 
     objects = None
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name= "username", default= "1")
-    email = models.ForeignKey(User, on_delete=models.CASCADE, related_name= "email", default= "1")
+    author = models.ManyToManyField(User, through = 'PostUser')
+    ##email = models.ManyToManyField(User, on_delete=models.CASCADE, related_name= "email", default= "1")
     time_in = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=20,choices=CATEGORY, default=tanks)
     head_name = models.CharField(max_length=250, unique=True)
@@ -51,13 +51,17 @@ class Post(models.Model):
 
     def __str__(self):
         #return self.head_name
-        return f'{self.head_name}: {self.email} : {self.author}'
+        return f'{self.head_name}: {self.author.email} : {self.author}'
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs) # сначала вызываем метод родителя, чтобы объект сохранился
         cache.delete(f'post-{self.pk}') # затем удаляем его из кэша, чтобы сбросить его
+
+class PostUser (models.Model):
+    post= models.ForeignKey(Post, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Comment(models.Model):
 
