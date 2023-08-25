@@ -51,7 +51,7 @@ class Post(models.Model):
 
     def __str__(self):
         #return self.head_name
-        return f'{self.head_name}: {self.author.email} : {self.author}'
+        return f'{self.head_name}: {self.author.user} : {self.author.emai}'
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 

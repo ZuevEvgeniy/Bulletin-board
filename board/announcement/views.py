@@ -17,7 +17,6 @@ from django.http import HttpResponse
 #from .tasks import hello, send_email_post, printer
 from django.core.cache import cache
 from django.core.mail import send_mail
-
 class PostsList(ListView):
     model = Post
     ordering = '-time_in'
@@ -153,10 +152,3 @@ class ComsSearch(ListView):
         context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
         return context
-
-class ComAgree(ListView):
-    model = Comment
-    ordering = 'user'
-    template_name = 'agree.html'
-    context_object_name = 'coms'
-    paginate_by = 10
