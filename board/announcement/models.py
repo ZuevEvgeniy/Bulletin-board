@@ -4,6 +4,8 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.urls import reverse
 from django.core.cache import cache
+from allauth.account.forms import SignupForm
+from django.contrib.auth.models import Group
 
 tanks = 'Танки'
 hils = 'Хилы'
@@ -77,3 +79,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.user}'
+
+class BasicSignupForm(SignupForm):
+
+    def save(self, request):
+        user = super(BasicSignupForm, self).save(request)
+        basic_group = Group.objects.get(name='basic')
+        basic_group.user_set.add(user)
+        return user

@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -10,13 +9,8 @@ from .filters import ComsFilter
 from .forms import PostForm, ComForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from urllib import request
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render
-from django.http import HttpResponse
-#from .tasks import hello, send_email_post, printer
-from django.core.cache import cache
 from django.core.mail import send_mail
+
 class PostsList(ListView):
     model = Post
     ordering = '-time_in'
@@ -32,7 +26,7 @@ class PostDetail(DetailView):
 
 @method_decorator(login_required, name='dispatch')
 class PostCreate(PermissionRequiredMixin,CreateView):
-    permission_required = ('posts.add_post',)
+    permission_required = ('announcement.add_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
@@ -52,7 +46,7 @@ class PostCreate(PermissionRequiredMixin,CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class PostUpdate(PermissionRequiredMixin,UpdateView):
-    permission_required = ('posts.change_post',)
+    permission_required = ('announcement.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
@@ -67,14 +61,14 @@ class PostUpdate(PermissionRequiredMixin,UpdateView):
 
 @method_decorator(login_required, name='dispatch')
 class PostDelete(PermissionRequiredMixin,DeleteView):
-    permission_required = ('posts.delete_post',)
+    permission_required = ('announcement.delete_post',)
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('posts_list')
 
 @method_decorator(login_required, name='dispatch')
 class ComCreate(PermissionRequiredMixin,CreateView):
-    permission_required = ('comments.add_comment',)
+    permission_required = ('announcement.add_comment',)
     form_class = ComForm
     model = Post
     template_name = 'com_edit.html'
@@ -107,7 +101,7 @@ class ComDetail(DetailView):
 
 @method_decorator(login_required, name='dispatch')
 class ComUpdate(PermissionRequiredMixin,UpdateView):
-    permission_required = ('com.change_post',)
+    permission_required = ('announcement.change_comment',)
     form_class = ComForm
     model = Comment
     template_name = 'com_edit.html'
@@ -122,22 +116,14 @@ class ComUpdate(PermissionRequiredMixin,UpdateView):
 
 @method_decorator(login_required, name='dispatch')
 class ComDelete(PermissionRequiredMixin,DeleteView):
-    permission_required = ('com.delete_post',)
+    permission_required = ('announcement.delete_comment',)
     model = Comment
     template_name = 'com_delete.html'
     success_url = reverse_lazy('posts_list')
 
-
-#class ComsList(ListView):
-    #model = Comment
-    #ordering = 'post'
-    #template_name = 'coms.html'
-    #context_object_name = 'coms'
-    #paginate_by = 10
-
 class ComsSearch(ListView):
     model = Comment
-    ordering = 'user'
+    ordering = '-time_in'
     template_name = 'coms.html'
     context_object_name = 'coms'
     paginate_by = 10

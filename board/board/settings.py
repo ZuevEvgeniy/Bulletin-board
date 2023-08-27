@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
-    # 'django_apscheduler',
-    'redis',
-    'celery',
+    'django_apscheduler',
+    #'redis',
+    #'celery',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +153,8 @@ DEFAULT_FROM_EMAIL = X
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # сообщения выводит в терминал
 
-LOGIN_URL = 'sign/login/'
+#LOGIN_URL = 'sign/login/' #для логирования через свое приложение
+LOGIN_URL = '/accounts/login/' # через allauth
 LOGIN_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = [
@@ -164,5 +165,16 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+ACCOUNT_FORMS = {'signup': 'announcement.models.BasicSignupForm'}
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
