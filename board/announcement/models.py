@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
@@ -17,13 +18,6 @@ blacksmiths = 'Кузнецы'
 tanners = 'Кожевники'
 potion_makers = 'Зельевары'
 spell_masters = 'Мастера заклинаний'
-class Author(models.Model):
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username
-
 
 CATEGORY = [
     (tanks, 'Танки'),
@@ -42,8 +36,7 @@ CATEGORY = [
 class Post(models.Model):
 
     objects = None
-    author = models.ManyToManyField(User, through = 'PostUser')
-    ##email = models.ManyToManyField(User, on_delete=models.CASCADE, related_name= "email", default= "1")
+    author = models.ForeignKey(User, on_delete=models.CASCADE,blank=True)
     time_in = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=20,choices=CATEGORY, default=tanks)
     head_name = models.CharField(max_length=250, unique=True)
@@ -52,33 +45,41 @@ class Post(models.Model):
     file = models.FileField(upload_to='files/',blank=True, null= True)
 
     def __str__(self):
-        authors_email = [i.email for i in self.author.all()]
-        authors_name = [i.username for i in self.author.all()]
+        authors_email = self.author.email
+        authors_name = self.author.username
         return f'{self.head_name}: {authors_name} : {authors_email}'
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs) # сначала вызываем метод родителя, чтобы объект сохранился
-        cache.delete(f'post-{self.pk}') # затем удаляем его из кэша, чтобы сбросить его
 
-class PostUser (models.Model):
-    post= models.ForeignKey(Post, on_delete = models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Comment(models.Model):
 
     objects = None
     post = models.ForeignKey(Post, on_delete=models.CASCADE,default="1")
+    #post = models.ManyToManyField(Post, blank=True, null=True, related_name="author")
     user = models.ForeignKey(User, on_delete=models.CASCADE, default= "1")
-    #email = models.ForeignKey(Post, on_delete=models.CASCADE, default="1")
     comment_text = models.TextField()
     time_in = models.DateTimeField(auto_now_add=True)
+
     def get_absolute_url(self):
         return reverse('com_detail', args=[str(self.id)])
 
     def __str__(self):
-        return f'{self.user}'
+        user_email = self.user.email
+        author_post = self.post.author
+        return f'{self.user}: {author_post}: {self.post.head_name}: {user_email}'
+
+class Agree(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE,default="1")
+    text = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('agree', args=[str(self.id)])
+
+    def __str__(self):
+        user_email = self.comment.user.email
+        return f"{user_email}"
 
 class BasicSignupForm(SignupForm):
 

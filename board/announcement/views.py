@@ -4,12 +4,13 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from datetime import datetime
-from .models import Post, Comment
+from .models import Post, Comment, Agree
 from .filters import ComsFilter
-from .forms import PostForm, ComForm
+from .forms import PostForm, ComForm, AgreeForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
 
 class PostsList(ListView):
     model = Post
@@ -38,6 +39,7 @@ class PostCreate(PermissionRequiredMixin,CreateView):
 
     def get_form_kwargs(self):
         """Необходимо учитывать, что текущий пользователь у нас может быть не залогинен."""
+        #raise Exception(f'{self.request.user} {self.request.user.is_authenticated}')
         kwargs = super().get_form_kwargs()
         kwargs.update({
             'user_info': self.request.user if self.request.user.is_authenticated else None,
@@ -85,19 +87,21 @@ class ComCreate(PermissionRequiredMixin,CreateView):
         com = form.save(commit=False)
         com.save()
         send_mail(
-            subject=f'На Ваш пост{com.post} откликнулся{com.user}',
+            subject=f'На Ваш пост {com.post.head_name} откликнулся {com.user.username}.',
             message=com.comment_text,
             from_email='ForMyLittleTesting@yandex.ru',
-            recipient_list=["authors_email"]
+            recipient_list=[com.post.author.email]
         )
 
         return super().form_valid(form)
+
 
 class ComDetail(DetailView):
     model = Post
     template_name = 'com.html'
     context_object_name = 'com'
     queryset = Comment.objects.all()
+
 
 @method_decorator(login_required, name='dispatch')
 class ComUpdate(PermissionRequiredMixin,UpdateView):
@@ -130,7 +134,10 @@ class ComsSearch(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        #user = self.request.user
         self.filterset = ComsFilter(self.request.GET, queryset)
+        #notclear= self.filterset.qs
+        #notclear.filter(author_post__name = user)
         return self.filterset.qs
 
     def get_context_data(self, **kwargs):
@@ -138,3 +145,27 @@ class ComsSearch(ListView):
         context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
         return context
+
+class AgreeDetail(DetailView):
+    model = Agree
+    template_name = 'agree.html'
+    context_object_name = 'agree'
+    queryset = Comment.objects.all()
+
+@method_decorator(login_required, name='dispatch')
+class AgreeCreate(PermissionRequiredMixin,CreateView):
+    permission_required = ('announcement.add_agree',)
+    form_class = AgreeForm
+    model = Agree
+    template_name = 'agreed.html'
+    success_url = reverse_lazy('posts_list')
+    def form_valid(self, form):
+        agree = form.save(commit=False)
+        agree.save()
+        send_mail(
+            subject=f'Ваш отклик  {agree.comment} принят.',
+            message=agree.text,
+            from_email='ForMyLittleTesting@yandex.ru',
+            recipient_list=[agree.comment.user.email]
+        )
+        return super().form_valid(form)

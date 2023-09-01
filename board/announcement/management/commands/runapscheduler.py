@@ -23,7 +23,7 @@ def my_job():
     today = datetime.datetime.now()
     last_week = today - datetime.timedelta(days=7)
     posts = Post.objects.filter(time_in__gte=last_week)
-    subscribers= User.objects.email # пришить всех пользовательей
+    subscribers= email # пришить всех пользовательей
     html_contetnt = render_to_string(
         "weekly_post.html",
         {

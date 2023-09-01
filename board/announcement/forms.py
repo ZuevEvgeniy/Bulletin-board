@@ -1,6 +1,7 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, Agree
 from django.core.exceptions import ValidationError
+
 
 class PostForm(forms.ModelForm):
    class Meta:
@@ -31,8 +32,12 @@ class PostForm(forms.ModelForm):
            raise ValidationError(
                "Название не должно быть идентично посту."
            )
-
        return cleaned_data
+
+   def save(self, *args, **kwargs):
+       """Переопределим метод save, если используем вариант, когда исключаем account из формы"""
+       self.instance.author = self.user_info
+       return super().save(*args, **kwargs)
 
 class ComForm(forms.ModelForm):
    class Meta:
@@ -56,3 +61,25 @@ class ComForm(forms.ModelForm):
            })
 
        return cleaned_data
+
+   def save(self, *args, **kwargs):
+       """Переопределим метод save, если используем вариант, когда исключаем account из формы"""
+       self.instance.user = self.user_info
+       return super().save(*args, **kwargs)
+
+class AgreeForm(forms.ModelForm):
+    class Meta:
+        model = Agree
+        fields = [
+            'comment',
+            'text',
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        text = cleaned_data.get("text")
+        if text is not None and len(text) < 5:
+            raise ValidationError({
+                "article_text": "Публикация не может быть менее 5 символов."
+            })
+        return cleaned_data
