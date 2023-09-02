@@ -133,11 +133,8 @@ class ComsSearch(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        #user = self.request.user
-        self.filterset = ComsFilter(self.request.GET, queryset)
-        #notclear= self.filterset.qs
-        #notclear.filter(author_post__name = user)
+        queryset = Comment.objects.filter(post__author_id=self.request.user.pk)
+        self.filterset = ComsFilter(self.request.GET, queryset, request= self.request.user.pk)
         return self.filterset.qs
 
     def get_context_data(self, **kwargs):

@@ -30,7 +30,10 @@ Comments
                <td>{{ com.post.author.username }}</td>
                <td>{{ com.post.head_name }} </td>
                <td>{{ com.time_in|date:'d M Y' }}</td>
-               <td>{{ com.comment_text|truncatechars:20}}</td>
+               <!--<td>{{ com.comment_text|truncatechars:20}}</td>-->
+               <td>{% for com in coms.all %}
+                   <a href="{% url 'com_detail' com.id %}">{{com.comment_text|truncatechars:20}}</a>
+               {% endfor %}</td>
            </tr>
            {% endfor %}
 
