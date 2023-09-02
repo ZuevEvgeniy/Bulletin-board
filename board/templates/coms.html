@@ -7,6 +7,7 @@ Comments
 
 {% block content %}
    <h1>Все отклики!</h1>
+   <a href="{% url 'posts_list' %}">Назад к объявлениям</a>
    <form action="" method="get">
        {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
        {{ filterset.form.as_p }}
@@ -31,9 +32,9 @@ Comments
                <td>{{ com.post.head_name }} </td>
                <td>{{ com.time_in|date:'d M Y' }}</td>
                <!--<td>{{ com.comment_text|truncatechars:20}}</td>-->
-               <td>{% for com in coms.all %}
+               <td>
                    <a href="{% url 'com_detail' com.id %}">{{com.comment_text|truncatechars:20}}</a>
-               {% endfor %}</td>
+               </td>
            </tr>
            {% endfor %}
 

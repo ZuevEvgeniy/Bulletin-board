@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Near Finish">
+    <list default="true" id="3df96593-70a8-406e-bd55-a8c42c420704" name="Changes" comment="Near Finish 1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/announcement/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/announcement/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/announcement/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/board/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/templates/com.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/com.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/coms.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/coms.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/templates/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/post.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/posts.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/posts.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693587181054</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Near Finish 1.0">
+      <created>1693654139943</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1693654139943</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,6 +217,7 @@
     <MESSAGE value="Files 2.4" />
     <MESSAGE value="Files + mail + sign" />
     <MESSAGE value="Near Finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="Near Finish" />
+    <MESSAGE value="Near Finish 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Near Finish 1.0" />
   </component>
 </project>

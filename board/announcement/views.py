@@ -74,6 +74,7 @@ class ComCreate(PermissionRequiredMixin,CreateView):
     form_class = ComForm
     model = Post
     template_name = 'com_edit.html'
+    success_url = reverse_lazy('posts_list')
 
     def get_form_kwargs(self):
         """Необходимо учитывать, что текущий пользователь у нас может быть не залогинен."""

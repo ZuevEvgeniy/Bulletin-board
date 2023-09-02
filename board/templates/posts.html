@@ -26,9 +26,9 @@ Posts
                <!--<td>{{ post.author }}</td>-->
                <td>{{ post.author }}</td>
                <!--<td>{{ post.head_name }}</td>-->
-               <td>{% for post in posts %}
-                   <a href="{% url 'post_detail' post.id %}">{{post.self.head_name}}</a>
-               {% endfor %}</td>
+               <td>
+                   <a href="{% url 'post_detail' post.id %}">{{post.head_name}}</a>
+               </td>
                <td>{{ post.time_in|date:'d M Y' }}</td>
                <td>{{ post.category }}
                <td>{{ post.article_text|truncatechars:20}}</td>
